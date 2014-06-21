@@ -2,6 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *
+ *
  */
 package binarytree;
 
@@ -86,6 +88,7 @@ class tree {
      * SEARCH TREE 
      *******************************
      */
+    //SEARCH FOR A NODE WITH THE DATA PASSED
     public node search(int data) {
 
         //CHECK IF TREE IS EMPTY 
@@ -115,7 +118,8 @@ class tree {
             }
         }
     }
-
+    
+    //SEARCH THE PARENT OF THE CURRENT NODE
     public node searchParent(int data) {
 
         //CHECK IF TREE IS EMPTY 
