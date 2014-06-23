@@ -22,11 +22,7 @@ class node {
 
     public void displayNode() // display ourself
     {
-        System.out.print('{');
-        System.out.print(data);
-        System.out.print(", ");
-        System.out.print(data);
-        System.out.print("} ");
+        System.out.println(data);
     }
 }
 
@@ -153,6 +149,13 @@ class tree {
 
     //SEARCH FOR MAX NUMBER
     public node searchMaxNode(node node) {
+        
+        //CHECK IF TREE IS EMPTY 
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return null;
+        }
+        
         node currentNode;
         if (node == null) {
             currentNode = root;
@@ -172,6 +175,13 @@ class tree {
 
     //SEARCH FOR LEAST DATA
     public node searchMinNode(node node) {
+        
+        //CHECK IF TREE IS EMPTY 
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return null;
+        }
+        
         node currentNode;
         if (node == null) {
             currentNode = root;
@@ -189,13 +199,20 @@ class tree {
         }
     }
 
-    /**
-     * *******************************
+    
+     /* *******************************
      * DELETE NODE 
-     *******************************
-     */
-    //DELETE NODE WITH DATA 
+     ********************************/
+    
+//DELETE NODE WITH DATA 
     public void delete(int data) {
+        
+        //CHECK IF TREE IS EMPTY 
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
+        
         node parentToDelete = searchParent(data);
         node nodeToDelete = search(data);
 
@@ -245,8 +262,19 @@ class tree {
             nodeToDelete.leftNode = null;
             System.out.println("3- NODE WITH DATA = " + data + " IS DELETED");
         } else {
-
-            System.out.println("MISSING IMPLEMENTATION, NODE TO BE DELETED HAS 2 CHILDS");
+            node temp = searchMinNode(nodeToDelete.rightNode);
+            node tempParent = searchParent(temp.data);
+            
+            nodeToDelete.data = temp.data;
+            
+            if(temp == tempParent.rightNode)
+                tempParent.rightNode = null;
+            else if(temp == tempParent.leftNode)
+                tempParent.leftNode = null;
+            else
+                System.out.println("ERROR");
+            
+            System.out.println("4- NODE WITH DATA = "+data+" IS DELETED");
 
         }
 
@@ -293,7 +321,7 @@ public class BinaryTree {
         int value;
         tree theTree = new tree();
 
-        theTree.insert(50);
+        /*theTree.insert(50);
         theTree.insert(25);
         theTree.insert(75);
         theTree.insert(12);
@@ -309,11 +337,11 @@ public class BinaryTree {
         theTree.insert(234);
         theTree.insert(324);
         theTree.insert(23);
-        theTree.insert(99);
+        theTree.insert(99);*/
 
         while (true) {
-            System.out.print("Enter first letter of show, ");
-            System.out.print("insert, find, delete, or traverse: ");
+            System.out.println("Enter first letter of show, ");
+            System.out.println("insert, find, delete, or traverse: ");
             int choice = 0;
             try {
                 choice = getChar();
@@ -323,7 +351,21 @@ public class BinaryTree {
 
             switch (choice) {
                 case 's':
-                    //theTree.displayTree();
+                    System.out.println("Enter value to find: ");
+                    try {
+                        value = getInt();
+                        node found = theTree.searchParent(value);
+                        if (found != null) {
+                            System.out.print("Found: ");
+                            found.displayNode();
+                            System.out.print("\n");
+                        } else {
+                            System.out.print("Could not find ");
+                        }
+                        System.out.print(value + '\n');
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 'i':
                     System.out.print("Enter value to insert: ");
@@ -336,7 +378,7 @@ public class BinaryTree {
                     
                     break;
                 case 'f':
-                    System.out.print("Enter value to find: ");
+                    System.out.println("Enter value to find: ");
                     try {
                         value = getInt();
                         node found = theTree.search(value);
@@ -354,7 +396,7 @@ public class BinaryTree {
 
                     break;
                 case 'd':
-                    System.out.print("Enter value to delete: ");
+                    System.out.println("Enter value to delete: ");
                     try {
                         value = getInt();
                         theTree.delete(value);
@@ -363,7 +405,7 @@ public class BinaryTree {
                     }
                     break;
                 case 't':
-                    System.out.print("Enter type 1 for pre-order, 2 for in-order or 3 post-order: ");
+                    System.out.println("Enter type 1 for pre-order, 2 for in-order or 3 post-order: ");
                     try {
                         value = getInt();
                         
@@ -374,7 +416,7 @@ public class BinaryTree {
                         else if(value == 3)
                             theTree.postOrder(theTree.root);
                         else
-                            System.out.print("VALUE NOT 1,2,3");
+                            System.out.println("VALUE NOT 1,2,3");
                         
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -383,9 +425,8 @@ public class BinaryTree {
                     break;
                 default:
                     System.out.print("Invalid entry\n");
-            }  // end switch
-        }  // end while
-
+            } 
+        }
     }
 
     // -------------------------------------------------------------
