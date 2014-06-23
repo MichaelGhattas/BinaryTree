@@ -6,7 +6,6 @@
  *
  */
 package binarytree;
-
 import java.io.*;
 import java.util.*;
 
@@ -305,6 +304,12 @@ public class BinaryTree {
         theTree.insert(87);
         theTree.insert(93);
         theTree.insert(94);
+        theTree.insert(34);
+        theTree.insert(86);
+        theTree.insert(234);
+        theTree.insert(324);
+        theTree.insert(23);
+        theTree.insert(99);
 
         while (true) {
             System.out.print("Enter first letter of show, ");
