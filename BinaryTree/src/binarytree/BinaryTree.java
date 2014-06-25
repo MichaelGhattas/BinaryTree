@@ -6,6 +6,7 @@
  *
  */
 package binarytree;
+
 import java.io.*;
 import java.util.*;
 
@@ -37,8 +38,7 @@ class tree {
 
     /**
      * *******************************
-     * INSERT
-     *******************************
+     * INSERT ******************************
      */
     //CHECK IF ITS FIRST ELEMENT TO BE INSERTED
     public void insert(int data) {
@@ -80,8 +80,7 @@ class tree {
 
     /**
      * *******************************
-     * SEARCH TREE 
-     *******************************
+     * SEARCH TREE ******************************
      */
     //SEARCH FOR A NODE WITH THE DATA PASSED
     public node search(int data) {
@@ -113,7 +112,7 @@ class tree {
             }
         }
     }
-    
+
     //SEARCH THE PARENT OF THE CURRENT NODE
     public node searchParent(int data) {
 
@@ -149,13 +148,13 @@ class tree {
 
     //SEARCH FOR MAX NUMBER
     public node searchMaxNode(node node) {
-        
+
         //CHECK IF TREE IS EMPTY 
         if (root == null) {
             System.out.println("Tree is empty");
             return null;
         }
-        
+
         node currentNode;
         if (node == null) {
             currentNode = root;
@@ -173,15 +172,39 @@ class tree {
         }
     }
 
+    //SEARCH FOR MAX NUMBER AND RETURN DEPTH
+    public int searchMaxNodeDepth() {
+
+        //CHECK IF TREE IS EMPTY 
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return 0;
+        }
+
+        node currentNode = root;
+
+        int counter = 0;
+
+        while (true) {
+            counter++;
+            if (currentNode.rightNode == null) {
+                System.out.println("MAX DATA = " + currentNode.data);
+                return counter;
+            } else {
+                currentNode = currentNode.rightNode;
+            }
+        }
+    }
+
     //SEARCH FOR LEAST DATA
     public node searchMinNode(node node) {
-        
+
         //CHECK IF TREE IS EMPTY 
         if (root == null) {
             System.out.println("Tree is empty");
             return null;
         }
-        
+
         node currentNode;
         if (node == null) {
             currentNode = root;
@@ -199,20 +222,63 @@ class tree {
         }
     }
 
-    
-     /* *******************************
+    //SEARCH FOR LEAST DATA
+    public int searchMinNodeDepth() {
+
+        //CHECK IF TREE IS EMPTY 
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return 0;
+        }
+
+        node currentNode = root;
+
+        int counter = 0;
+
+        while (true) {
+            counter++;
+            if (currentNode.leftNode == null) {
+                System.out.println("MIN DATA = " + currentNode.data);
+                return counter;
+            } else {
+                currentNode = currentNode.leftNode;
+            }
+        }
+    }
+    int counter = 0;
+
+    //FIND DEPTH OF THE TREE
+    public int findTreeDepth(node node) {
+
+        if (node == null) {
+            return 0;
+        } else {
+            counter++;
+            //System.out.print(node.data + " ");
+            int lDepth = findTreeDepth(node.leftNode);
+            int rDepth = findTreeDepth(node.rightNode);
+            
+            if (lDepth > rDepth) {
+                return (lDepth + 1);
+            } else {
+                return (rDepth + 1);
+            }
+
+        }
+    }
+
+    /* *******************************
      * DELETE NODE 
      ********************************/
-    
 //DELETE NODE WITH DATA 
     public void delete(int data) {
-        
+
         //CHECK IF TREE IS EMPTY 
         if (root == null) {
             System.out.println("Tree is empty");
             return;
         }
-        
+
         node parentToDelete = searchParent(data);
         node nodeToDelete = search(data);
 
@@ -264,17 +330,18 @@ class tree {
         } else {
             node temp = searchMinNode(nodeToDelete.rightNode);
             node tempParent = searchParent(temp.data);
-            
+
             nodeToDelete.data = temp.data;
-            
-            if(temp == tempParent.rightNode)
+
+            if (temp == tempParent.rightNode) {
                 tempParent.rightNode = null;
-            else if(temp == tempParent.leftNode)
+            } else if (temp == tempParent.leftNode) {
                 tempParent.leftNode = null;
-            else
+            } else {
                 System.out.println("ERROR");
-            
-            System.out.println("4- NODE WITH DATA = "+data+" IS DELETED");
+            }
+
+            System.out.println("4- NODE WITH DATA = " + data + " IS DELETED");
 
         }
 
@@ -282,8 +349,7 @@ class tree {
 
     /**
      * *******************************
-     * TRAVERSAL METHODS 
-     *******************************
+     * TRAVERSAL METHODS ******************************
      */
     public void inOrder(node node) {
         if (node != null) {
@@ -374,7 +440,7 @@ public class BinaryTree {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    
+
                     break;
                 case 'f':
                     System.out.println("Enter value to find: ");
@@ -407,24 +473,30 @@ public class BinaryTree {
                     System.out.println("Enter type 1 for pre-order, 2 for in-order or 3 post-order: ");
                     try {
                         value = getInt();
-                        
-                        if(value == 1)
+
+                        if (value == 1) {
                             theTree.preOrder(theTree.root);
-                        else if(value == 2)
+                        } else if (value == 2) {
                             theTree.inOrder(theTree.root);
-                        else if(value == 3)
+                        } else if (value == 3) {
                             theTree.postOrder(theTree.root);
-                        else
+                        } else {
                             System.out.println("VALUE NOT 1,2,3");
-                        
+                        }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    
+
+                case 'a':
+
+                    int depth = theTree.findTreeDepth(theTree.root);
+                    System.out.println("Maximum depth = "+depth);
+
                     break;
                 default:
                     System.out.print("Invalid entry\n");
-            } 
+            }
         }
     }
 
