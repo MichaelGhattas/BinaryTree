@@ -321,7 +321,7 @@ public class BinaryTree {
         int value;
         tree theTree = new tree();
 
-        /*theTree.insert(50);
+        theTree.insert(50);
         theTree.insert(25);
         theTree.insert(75);
         theTree.insert(12);
@@ -337,11 +337,10 @@ public class BinaryTree {
         theTree.insert(234);
         theTree.insert(324);
         theTree.insert(23);
-        theTree.insert(99);*/
+        theTree.insert(99);
 
         while (true) {
-            System.out.println("Enter first letter of show, ");
-            System.out.println("insert, find, delete, or traverse: ");
+            System.out.println("Enter first letter of show parent, insert, find, delete, or traverse and hit enter");
             int choice = 0;
             try {
                 choice = getChar();
@@ -351,7 +350,7 @@ public class BinaryTree {
 
             switch (choice) {
                 case 's':
-                    System.out.println("Enter value to find: ");
+                    System.out.println("Enter value to find parent: ");
                     try {
                         value = getInt();
                         node found = theTree.searchParent(value);
