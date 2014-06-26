@@ -20,7 +20,8 @@ class node {
     int data;
     node rightNode;
     node leftNode;
-
+    
+    //PRINT DATA STORED IN THE NODE
     public void displayNode() // display ourself
     {
         System.out.println(data);
@@ -270,6 +271,7 @@ class tree {
     /* *******************************
      * DELETE NODE 
      ********************************/
+    
 //DELETE NODE WITH DATA 
     public void delete(int data) {
 
@@ -404,6 +406,15 @@ public class BinaryTree {
         theTree.insert(324);
         theTree.insert(23);
         theTree.insert(99);
+        theTree.insert(1234);
+        theTree.insert(1235);
+        theTree.insert(1236);
+        theTree.insert(1237);
+        theTree.insert(2345);
+        theTree.insert(1234);
+        theTree.insert(3123);
+        theTree.insert(12313);
+        theTree.insert(12357);
 
         while (true) {
             System.out.println("Enter first letter of show parent, insert, find, delete, or traverse and hit enter");
