@@ -126,6 +126,7 @@ class tree {
         //CURENT NODE IS EQUAL TO ROOT
         node currentNode = root;
         node parentNode = root;
+        
         //LOOP TO GO THROUGH TREE
         while (true) {
             if (currentNode == null) {
